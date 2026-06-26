@@ -215,4 +215,95 @@ export function MembershipSection() {
                 className="block w-full text-center font-heading text-sm tracking-widest uppercase py-3.5 rounded-lg transition-all hover:-translate-y-0.5"
                 style={plan.featured ? { background: "#39FF14", color: "#0D1B6E" } : { background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.12)" }}
               >
-                {plan.featured ? "Mulai Membership
+                {plan.featured ? "Mulai Membership →" : "Daftar Gratis →"}
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const faqs = [
+  { q: "Apa itu Tabur Bareng UB?", a: "Tabur Bareng UB adalah platform ekosistem pembelajaran Tadabbur Al-Qur'an. Dipandu langsung oleh Ustadz Budi Ashari, platform ini menjadi tempat belajar yang bertahap, terstruktur, dan komunal." },
+  { q: "Siapa yang cocok mengikuti event ini?", a: "Siapa saja yang ingin belajar memahami Al-Qur'an dengan benar dan konsisten. Mulai dari mahasiswa, karyawan, orang tua muda, hingga profesional." },
+  { q: "Apa bedanya Peserta dengan Member?", a: "Peserta bisa mendaftar event dan mengirim tulisan tadabbur secara gratis. Member mendapatkan akses penuh ke seluruh rekaman, platform pembelajaran, sertifikat, dan komunitas diskusi eksklusif." },
+  { q: "Bagaimana cara mengikuti event online?", a: "Setelah mendaftar dan verifikasi email, link Zoom tersedia di dashboard-mu. Notifikasi pengingat dikirim H-1 dan 30 menit sebelum event dimulai." },
+];
+
+export function FAQSection() {
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <section className="py-24" style={{ background: "#1a2e95" }}>
+      <div className="max-w-[1280px] mx-auto px-6 md:px-10">
+        <p className="section-label mb-4">FAQ</p>
+        <h2 className="font-heading text-white leading-none uppercase mb-12" style={{ fontSize: "clamp(2rem,4vw,3rem)" }}>Pertanyaan Umum</h2>
+        <div className="max-w-[720px]">
+          {faqs.map((faq, i) => (
+            <div key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+              <button className="w-full flex justify-between items-center py-5 text-left" onClick={() => setOpen(open === i ? null : i)}>
+                <span className="font-heading text-sm tracking-wide uppercase text-white">{faq.q}</span>
+                <span className="font-heading text-xl ml-4 flex-shrink-0" style={{ color: "#39FF14", transform: open === i ? "rotate(45deg)" : "none", transition: "transform 0.3s" }}>+</span>
+              </button>
+              <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open === i ? "200px" : "0px" }}>
+                <p className="font-body text-white/55 text-sm pb-5 leading-relaxed" style={{ fontWeight: 300 }}>{faq.a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function CTASection() {
+  return (
+    <section className="py-24 text-center" style={{ background: "#0D1B6E", borderTop: "1px solid rgba(57,255,20,0.1)" }}>
+      <div className="max-w-[1280px] mx-auto px-6 md:px-10">
+        <span className="font-display block mb-2" style={{ fontSize: "1.8rem", color: "#39FF14" }}>Mulai Sekarang</span>
+        <h2 className="font-heading text-white leading-none uppercase mb-4" style={{ fontSize: "clamp(2.5rem,6vw,5rem)", letterSpacing: "-0.01em" }}>
+          TABUR BENIHMU<br />HARI INI
+        </h2>
+        <p className="font-body text-white/50 mb-8 mx-auto max-w-[44ch]" style={{ fontSize: "1rem", lineHeight: 1.8, fontWeight: 300 }}>
+          Bergabung dengan ribuan peserta yang sedang belajar menghayati ayat Allah bersama.
+        </p>
+        <div className="flex flex-wrap gap-3 justify-center">
+          <a href="#event" className="font-heading text-sm tracking-widest uppercase px-8 py-4 rounded-lg hover:-translate-y-0.5 transition-all" style={{ background: "#39FF14", color: "#0D1B6E" }}>Daftar Peserta</a>
+          <a href="#membership" className="font-heading text-sm tracking-widest uppercase px-8 py-4 rounded-lg transition-all" style={{ border: "1px solid rgba(255,255,255,0.18)", color: "rgba(255,255,255,0.55)" }}>Lihat Membership</a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Footer() {
+  return (
+    <footer style={{ background: "#091040", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+      <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-12 grid md:grid-cols-3 gap-8">
+        <div>
+          <span className="font-display block text-2xl leading-tight" style={{ color: "#39FF14" }}>Tabur</span>
+          <span className="font-heading block text-lg tracking-widest uppercase text-white leading-tight mb-3">Bareng UB</span>
+          <p className="font-body text-white/35 text-xs leading-relaxed max-w-[26ch]" style={{ fontWeight: 300 }}>Menaburkan benih kebaikan ayat Allah di muka bumi.</p>
+        </div>
+        {[
+          { title: "Platform", links: ["Event Hub", "Membership", "Learning Platform", "Galeri", "Leaderboard"] },
+          { title: "Informasi", links: ["Tentang", "FAQ", "Kebijakan Privasi", "Syarat & Ketentuan", "Hubungi Kami"] },
+        ].map((col) => (
+          <div key={col.title}>
+            <h4 className="font-heading text-[0.68rem] tracking-[0.22em] uppercase mb-4" style={{ color: "#39FF14" }}>{col.title}</h4>
+            <ul className="space-y-2">
+              {col.links.map((link) => (
+                <li key={link}><a href="#" className="font-body text-white/40 hover:text-white transition-colors text-sm" style={{ fontWeight: 300 }}>{link}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-4 flex justify-between flex-wrap gap-2" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+        <p className="font-body text-white/25 text-xs" style={{ fontWeight: 300 }}>© 2025 <span style={{ color: "#39FF14" }}>Tabur Bareng UB</span>. Hak cipta dilindungi.</p>
+        <p className="font-body text-white/25 text-xs" style={{ fontWeight: 300 }}>Dibuat dengan niat baik 🌱</p>
+      </div>
+    </footer>
+  );
+}
