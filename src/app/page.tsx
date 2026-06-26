@@ -9,7 +9,7 @@ import {
   FAQSection,
   CTASection,
   Footer,
-} from "@/components/sections/OtherSection";
+} from "@/components/sections/OtherSections";
 
 export default function HomePage() {
   return (
